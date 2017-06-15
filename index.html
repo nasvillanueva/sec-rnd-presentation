@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Security RND</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            # Security RND
+          </textarea>
+        </section>
+				<section>
+          <section data-markdown>
+            <textarea data-template>
+              ## Securing Data in Transit
+
+              - Data moving from clients to server
+              - Data moving from servers to servers
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Secure connections using SSL/TLS
+
+              - Use SSL certificates from SSL providers
+              - Use Self Signed certificates (_free_)
+              - Use [Let's Encrypt](https://letsencrypt.org/) with it's [Automation Client](https://letsencrypt.org/docs/client-options/) (_free_)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Implement Proper App Security Policies
+
+              - Implement proper authentication and authorization for resources
+              - Check resource/entity owner ship
+              - Prevent privilege escalation (Vertical and Horizontal)
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ## Securing Data at Rest / Data Anonymity
+
+              - Database entries (especially passwords)
+              - Encryption Keys stored in the server
+              - Configuration files that includes username, password, etc
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Proper password storage
+
+              - _**NEVER**_ store `passwords` in plaintext *or* in any form where the plaintext password is recoverable
+              - Use *strong hashing function* + *secure random salt* + *sufficient work factor*
+              - Recommended hash functions:
+                - [BCrypt](https://en.wikipedia.org/wiki/Bcrypt)
+                - [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2)
+                - [Argon2](https://en.wikipedia.org/wiki/Argon2)
+                - [Scrypt](https://en.wikipedia.org/wiki/Scrypt)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Encrypt Sensitive Data like personal information
+
+              Check [OWASP Application Security Verification Standard](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Use Proper security policies on servers and databases
+
+              To prevent admins with malicious intent to view and alter data
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Use externalized configuration and secrets manager
+
+              [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/) + [Hashicorp's Vault](https://github.com/hashicorp/vault) or [AWS KMS](https://aws.amazon.com/kms/)
+
+              *For AWS, make use of AWS Identity Access Management (IAM) so that some DB credentials are removed from the application configuration file*
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Backup!
+
+              - With proper security policies
+              - Use strong encryption to ensure data confidentiality
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ## Application Security
+
+              *(as part of development process)*
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Include AppSec in Development/Build Pipeline
+
+              - Automate AppSec Testing
+              - Use tools like [Gauntlt](http://gauntlt.org/), [BurpSuite](https://portswigger.net/burp/), [OWASP Zap](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project), [Netflix's Simian Army](https://github.com/Netflix/SimianArmy), etc.
+              - Practice Code Reviews
+            </textarea>
+          </section>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### Other Useful Resources
+
+            - [ISO/IEC 127000:2016](http://standards.iso.org/ittf/PubliclyAvailableStandards/c066435_ISO_IEC_27000_2016%28E%29.zip)
+            - [OWASP Dev Guide](https://github.com/OWASP/DevGuide)
+            - [OWASP AppSec Pipeline](https://www.appsecpipeline.org/index.html)
+            - [OWASP's Top 10](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
+          </textarea>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
